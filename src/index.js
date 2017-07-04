@@ -1,9 +1,5 @@
-import React, {Component} from 'react'
+import StyleProvider from './provider'
+import { createRenderer } from 'fela'
+import Box from './box'
 
-export default class extends Component {
-  render() {
-    return <div>
-      <h2>Welcome to React components</h2>
-    </div>
-  }
-}
+export { createRenderer, StyleProvider, Box }
