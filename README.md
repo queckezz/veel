@@ -3,11 +3,11 @@
 
 # veel [![Travis][build-badge]][build] [![npm package][npm-badge]][npm] [![Coveralls][coveralls-badge]][coveralls]
 
-:package: Base styling components using [`styled-system`](https://ghub.io/styled-system) and [`fela`](https://ghub.io/fela)
+:package: Base styling components using [`fela`](http://fela.js.org) with a [design system](https://github.com/jxnblk/styled-system)
 
-* **Low-Level** - Veel exposes only a few components which can be used as a base layer to build your UI components upon.
-* **Consistency** - Veel uses `styled-system` which encourages consistency of spacing, typography and color
-* **Universal** - By using fela it's really easy to prerender your styles on the server or anywhere.
+* **Low-Level** - Exposes only a few components which can be used as a base layer to build your UI components upon
+* **Consistency** - Uses `styled-system` which encourages consistency of spacing, typography and color
+* **Universal** - By using fela it's really easy to prerender your styles on the server or anywhere
 
 ```
 npm install veel
@@ -25,17 +25,29 @@ const Badge = (props) => (
 )
 ```
 
+## Contents
+
+* [Usage](#usage)
+* [Components](#components)
+  + [Box](#box)
+* [Plugins](#plugins)
+  + [Recommend plugins](#recommend-plugins)
+* [Author](#author)
+
 ## Usage
 
-1. Create a `fela` renderer.
+1. Create a [`fela`](http://fela.js.org/docs/api/fela-native/createRenderer.html) renderer.
 
 ```js
+import { createRenderer } from 'veel'
 const renderer = createRenderer()
 ```
 
 2. Wrap your application in a `StyleProvider` so that each `veel` component has access to the renderer and the optional theme.
 
 ```js
+import { StyleProvider, Box } from 'veel'
+
 class App extends React.Component {
   render() {
     return (
@@ -86,9 +98,36 @@ class CustomDocument extends Document {
 
 4. You're done!
 
-## `<Box />`
+```js
+<Box css={{
+  animationName: {
+  '0%': { color: 'red ' },
+  '100%': { color: 'blue' }
+  },
+}} />
+
+// -> { animationName: 'k1' }
+```
+
+## Components
+
+### Box
+
+```js
+<Box is='p' fontSize={3}>Hello Veel!</Box>
+```
 
 The core layout component. Take a look at [`styled-system`](https://github.com/jxnblk/styled-system/blob/master/README.md) for documentation on `<Box />` `props`.
+
+By default a `<Box />` component will render out to a `div`. You can change the tag by providing an `is` property.
+
+## Plugins
+
+By using fela you have a wide variety of plugins available. Check out the [plugin list](http://fela.js.org/docs/introduction/Ecosystem.html#plugins)
+
+### Recommend plugins
+
+* [**`fela-plugin-embedded`**](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-embedded) - Inline keyframes and font-faces
 
 ## Author
 
