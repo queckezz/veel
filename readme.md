@@ -200,8 +200,8 @@ Authored and maintained by Fabian Eichenberger with help from contributors ([lis
 
 > GitHub [@queckezz](https://github.com/queckezz) · Twitter [@queckezz](https://twitter.com/queckezz)
 
-[version-image]: https://img.shields.io/npm/v/fmt-obj.svg?style=flat-square
-[version-url]: https://npmjs.org/package/fmt-obj
+[version-image]: https://img.shields.io/npm/v/veel.svg?style=flat-square
+[version-url]: https://npmjs.org/package/veel
 
 [standard-image]: https://img.shields.io/badge/code-standard-brightgreen.svg?style=flat-square
 [standard-url]: https://github.com/feross/standard
