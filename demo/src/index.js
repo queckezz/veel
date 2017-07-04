@@ -31,13 +31,23 @@ const CenteredBox = props => (
     w={[1, 0.5]}
     css={{ height: '50%' }}
     {...props}
-  >
-    Hello World
-  </Box>
+  />
 )
 
+const fontFamily = `
+  -apple-system,
+  BlinkMacSystemFont,
+  Segoe UI,
+  Helvetica Neue,
+  sans-serif
+`
+
 const App = () => (
-  <Flex wrap center css={{ height: '100vh' }}>
+  <Flex
+    wrap
+    align='center'
+    css={{ height: '100vh', fontFamily }}
+  >
     <CenteredBox bg='lightblue'>1</CenteredBox>
     <CenteredBox color='white' bg='blue'>2</CenteredBox>
   </Flex>

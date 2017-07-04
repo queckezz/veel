@@ -27,12 +27,42 @@ const Badge = (props) => (
 
 ## Contents
 
+* [Example](#example)
 * [Usage](#usage)
 * [Components](#components)
   + [Box](#box)
+  + [Flex](#flex)
 * [Plugins](#plugins)
   + [Recommend plugins](#recommend-plugins)
 * [Author](#author)
+
+## Example
+
+The following renders a responsive row with two equally divided divs collapsing on mobile.
+
+![Example](./example.gif)
+
+```js
+const CenteredBox = props => (
+  <Box
+    p={2}
+    w={[1, 0.5]}
+    css={{ height: '50%' }}
+    {...props}
+  />
+)
+
+const App = () => (
+  <Flex
+    wrap
+    align='center'
+    css={{ height: '100vh' }}
+  >
+    <CenteredBox bg='lightblue'>1</CenteredBox>
+    <CenteredBox color='white' bg='blue'>2</CenteredBox>
+  </Flex>
+)
+```
 
 ## Usage
 
@@ -114,12 +144,46 @@ class CustomDocument extends Document {
 ### Box
 
 ```js
-<Box is='p' fontSize={3}>Hello Veel!</Box>
+<Box w={1}>Hello Veel!</Box>
 ```
 
 The core layout component. Take a look at [`styled-system`](https://github.com/jxnblk/styled-system/blob/master/README.md) for documentation on `<Box />` `props`.
 
+#### `Box.is`
+
 By default a `<Box />` component will render out to a `div`. You can change the tag by providing an `is` property.
+
+### Flex
+
+```js
+<Flex wrap center />
+```
+
+[View the example](./demo/src/index.js) on how to use it.
+
+#### `Flex.center`
+
+Sets both `alignItems` and `justifyContent` to `center`.
+
+#### `Flex.wrap`
+
+Sets `flexWrap` to `wrap`.
+
+#### `Flex.column`
+
+Sets `flexDirection` to `column`.
+
+#### `Flex.justify`
+
+CSS `justifyContent` property.
+
+#### `Flex.align`
+
+CSS `alignItem` property.
+
+#### `Flex.order`
+
+CSS `order` property.
 
 ## Plugins
 
