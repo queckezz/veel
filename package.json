@@ -1,6 +1,6 @@
 {
   "name": "veel",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.1",
   "description": "veel React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -33,11 +33,16 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
-  "author": "",
-  "homepage": "",
+  "author": "queckezz <fabian.eichenberger@gmail.com>",
   "license": "MIT",
-  "repository": "",
+  "repository": "queckezz/veel",
   "keywords": [
-    "react-component"
+    "react-component",
+    "design system",
+    "fela",
+    "styling",
+    "css-in-js",
+    "ui",
+    "react"
   ]
 }

@@ -1,7 +1,7 @@
 
 ![logo](./logo.png)
 
-# veel [![Travis][build-badge]][build] [![npm package][npm-badge]][npm] [![Coveralls][coveralls-badge]][coveralls]
+# veel [![NPM version][version-image]][version-url] [![Js Standard Style][standard-image]][standard-url]
 
 :package: Base styling components using [`fela`](http://fela.js.org) with a [design system](https://github.com/jxnblk/styled-system)
 
@@ -200,11 +200,8 @@ Authored and maintained by Fabian Eichenberger with help from contributors ([lis
 
 > GitHub [@queckezz](https://github.com/queckezz) · Twitter [@queckezz](https://twitter.com/queckezz)
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
+[version-image]: https://img.shields.io/npm/v/fmt-obj.svg?style=flat-square
+[version-url]: https://npmjs.org/package/fmt-obj
 
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
-
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
+[standard-image]: https://img.shields.io/badge/code-standard-brightgreen.svg?style=flat-square
+[standard-url]: https://github.com/feross/standard
