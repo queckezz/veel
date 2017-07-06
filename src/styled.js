@@ -12,13 +12,13 @@ import {
 
 import { combineRules } from 'fela'
 
-const styled = (Component = 'div', createComponent) => {
-  if (isFunction(Component)) {
-    createComponent = Component
-    Component = 'div'
+const styled = (BaseComponent = 'div', createComponent) => {
+  if (isFunction(BaseComponent)) {
+    createComponent = BaseComponent
+    BaseComponent = 'div'
   }
 
-  const VeelComponent = ({ css, ...props }, ctx) => {
+  const VeelComponent = ({ is, css, ...props }, ctx) => {
     const { renderer, theme } = ctx[context.ns]
 
     const style = createComponent
@@ -32,6 +32,8 @@ const styled = (Component = 'div', createComponent) => {
       })),
       props
     )
+
+    const Component = is || BaseComponent
 
     return (
       <Component

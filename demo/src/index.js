@@ -25,13 +25,15 @@ renderer.renderStatic(
   '*'
 )
 
-const CenteredBox = props => (
+const CenteredBox = ({ children, ...props }) => (
   <Box
     p={2}
     w={[1, 0.5]}
     css={{ height: '50%' }}
     {...props}
-  />
+  >
+    <Box is='h1'>{children}</Box>
+  </Box>
 )
 
 const fontFamily = `
