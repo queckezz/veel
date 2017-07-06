@@ -3,7 +3,7 @@
 
 # veel [![NPM version][version-image]][version-url] [![Js Standard Style][standard-image]][standard-url]
 
-:package: Base styling components using [`fela`](http://fela.js.org) with a [design system](https://github.com/jxnblk/styled-system)
+:package: Base React styling components using [`Fela`](http://fela.js.org) with a [design system](https://github.com/jxnblk/styled-system)
 
 * **Low-Level** - Exposes only a few components which can be used as a base layer to build your UI components upon
 * **Consistency** - Uses `styled-system` which encourages consistency of spacing, typography and color
@@ -96,9 +96,9 @@ class App extends React.Component {
 require('inject-css')(renderer.renderToString())
 ```
 
-**Render to a sheet list (next.js example)**
+**Render to a sheet list ([Next.js](http://ghub.io/next) example)**
 
-This makes the most sense when you also create the document skeleton with JSX. (like with [Next.js](https://ghub.io/next)
+This makes the most sense when you create the document skeleton with JSX.
 
 ```js
 import Document, { Head } from 'next/document'
@@ -127,17 +127,6 @@ class CustomDocument extends Document {
 ```
 
 4. You're done!
-
-```js
-<Box css={{
-  animationName: {
-  '0%': { color: 'red ' },
-  '100%': { color: 'blue' }
-  },
-}} />
-
-// -> { animationName: 'k1' }
-```
 
 ## Components
 
@@ -175,7 +164,6 @@ Sets `flexDirection` to `column`.
 
 #### `Flex.justify`
 
-
 CSS `justifyContent` property.
 
 #### `Flex.align`
@@ -193,6 +181,17 @@ By using fela you have a wide variety of plugins available. Check out the [plugi
 ### Recommend plugins
 
 * [**`fela-plugin-embedded`**](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-embedded) - Inline keyframes and font-faces
+
+```js
+<Box css={{
+  animationName: {
+  '0%': { color: 'red ' },
+  '100%': { color: 'blue' }
+  },
+}} />
+
+// -> { animationName: 'k1' }
+```
 
 ## Author
 
