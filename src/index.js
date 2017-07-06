@@ -1,5 +1,3 @@
-import StyleProvider from './provider'
-import { createRenderer } from 'fela'
-
-export { createRenderer, StyleProvider }
+export { default as StyleProvider } from './provider'
+export { createRenderer } from 'fela'
 export * from './components'
