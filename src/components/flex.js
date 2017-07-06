@@ -1,7 +1,6 @@
 import { oneOf, bool, number } from 'prop-types'
+import styled from '../styled'
 import React from 'react'
-import Box from './box'
-import styled from './styled'
 
 const Flex = styled(
   (
