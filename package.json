@@ -21,7 +21,6 @@
   "dependencies": {
     "@f/is-function": "^1.1.1",
     "fela": "^5.0.2",
-    "insert-css": "^2.0.0",
     "prop-types": "^15.5.10",
     "styled-system": "^1.0.0-7"
   },
@@ -29,6 +28,7 @@
     "react": "15.x"
   },
   "devDependencies": {
+    "insert-css": "^2.0.0",
     "nwb": "0.17.x",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
