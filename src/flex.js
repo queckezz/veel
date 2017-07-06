@@ -1,37 +1,38 @@
 import { oneOf, bool, number } from 'prop-types'
 import React from 'react'
 import Box from './box'
+import styled from './styled'
 
-const Flex = ({
-  justify,
-  column,
-  center,
-  order,
-  align,
-  wrap,
-  ...props
-}) => (
-  <Box
-    {...props}
-    css={Object.assign(
-      {},
-      {
-        display: 'flex',
-        alignItems: align,
-        justifyContent: justify,
-        flexWrap: wrap ? 'wrap' : null,
-        flexDirection: column ? 'column' : null,
-        order
-      },
-      center
+const Flex = styled(
+  (
+    theme,
+    {
+      justify,
+      column,
+      center,
+      order,
+      align,
+      wrap,
+      ...props
+    }
+  ) => ({
+    props,
+    css: {
+      display: 'flex',
+      alignItems: align,
+      justifyContent: justify,
+      flexWrap: wrap ? 'wrap' : null,
+      flexDirection: column ? 'column' : null,
+      order,
+
+      ...(center
         ? {
           alignItems: 'center',
           justifyContent: 'center'
         }
-        : {},
-      props.css
-    )}
-  />
+        : {})
+    }
+  })
 )
 
 Flex.PropTypes = {

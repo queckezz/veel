@@ -12,28 +12,32 @@ import {
 
 import { combineRules } from 'fela'
 
-const wrap = (fn, props) =>
-  isFunction(fn) ? fn(props) : props
+const styled = (Component = 'div', createComponent) => {
+  if (isFunction(Component)) {
+    createComponent = Component
+    Component = 'div'
+  }
 
-const styled = _style => Component => {
   const VeelComponent = ({ css, ...props }, ctx) => {
     const { renderer, theme } = ctx[context.ns]
 
-    const style = wrap(_style, props)
+    const style = createComponent
+      ? createComponent(theme, props)
+      : { props }
 
     const cn = renderer.renderRule(
-      combineRules(
-        fontSize,
-        space,
-        width,
-        color,
-        () => css || {}
-      ),
-      { style, ...props }
+      combineRules(fontSize, space, width, color, () => ({
+        ...style.css,
+        ...css
+      })),
+      props
     )
 
     return (
-      <Component className={cn} {...removeProps(props)} />
+      <Component
+        className={cn}
+        {...removeProps(style.props)}
+      />
     )
   }
 
