@@ -1,59 +1,32 @@
-import { oneOf, bool, number } from 'prop-types'
+import { responsiveStyle } from 'styled-system'
+import PropTypes from 'prop-types'
 import styled from '../styled'
-import React from 'react'
+import Box from './Box'
 
-const Flex = styled(
-  (
-    theme,
-    {
-      justify,
-      column,
-      center,
-      order,
-      align,
-      wrap,
-      ...props
-    }
-  ) => ({
-    props,
-    css: {
-      display: 'flex',
-      alignItems: align,
-      justifyContent: justify,
-      flexWrap: wrap ? 'wrap' : null,
-      flexDirection: column ? 'column' : null,
-      order,
+const direction = responsiveStyle('flex-direction', 'row', 'direction')
+const justify = responsiveStyle('justify-content', 'justify')
+const wrap = responsiveStyle('flex-wrap', 'wrap', 'wrap')
+const align = responsiveStyle('align-items', 'align')
 
-      ...(center
-        ? {
-          alignItems: 'center',
-          justifyContent: 'center'
-        }
-        : {})
-    }
-  })
+const Flex = styled(Box)(
+  { display: 'flex', },
+  direction,
+  justify,
+  align,
+  wrap
 )
 
-Flex.PropTypes = {
-  align: oneOf([
-    'flex-start',
-    'flex-end',
-    'baseline',
-    'center',
-    'stretch'
-  ]),
+const responsive = PropTypes.oneOfType([
+  PropTypes.number,
+  PropTypes.string,
+  PropTypes.array
+])
 
-  justify: oneOf([
-    'flex-start',
-    'flex-end',
-    'center',
-    'space-between',
-    'space-around'
-  ]),
-
-  order: number,
-  column: bool,
-  wrap: bool
+Flex.propTypes = {
+  justify: responsive,
+  align: responsive,
+  direction: responsive,
+  wrap: responsive
 }
 
 export default Flex

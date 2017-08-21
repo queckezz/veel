@@ -1,50 +1,34 @@
-import context from './context'
-import isFunction from '@f/is-function'
-import React from 'react'
-
-import {
-  removeProps,
-  fontSize,
-  space,
-  width,
-  color
-} from 'styled-system'
-
+import { createElement as h } from 'react'
 import { combineRules } from 'fela'
+import PropTypes from 'prop-types'
+import context from './context'
 
-const styled = (BaseComponent = 'div', createComponent) => {
-  if (isFunction(BaseComponent)) {
-    createComponent = BaseComponent
-    BaseComponent = 'div'
-  }
-
-  const VeelComponent = ({ is, css, ...props }, ctx) => {
+const styled = (BaseComponent) => (...args) => {
+  const Component = ({ is, ...props }, ctx) => {
     const { renderer, theme } = ctx[context.ns]
+    const stylePropKeys = Object.keys(Component.propTypes || {})
+    const styleProps = Object.assign({ theme }, props)
 
-    const style = createComponent
-      ? createComponent(theme, props)
-      : { props }
+    const rules = args
+      .map((a) => typeof a !== 'function' ? () => a : a)
+      .filter(s => s !== null)
 
-    const cn = renderer.renderRule(
-      combineRules(fontSize, space, width, color, () => ({
-        ...style.css,
-        ...css
-      })),
-      props
+    const className = renderer.renderRule(
+      combineRules(...rules),
+      styleProps
     )
 
-    const Component = is || BaseComponent
-
-    return (
-      <Component
-        className={cn}
-        {...removeProps(style.props)}
-      />
-    )
+    return h(is || BaseComponent, {
+      className,
+      ...Object.keys(props)
+        .filter(key => !stylePropKeys.includes(key))
+        .reduce((obj, key) => ({ ...obj, [key]: props[key] }), {})
+    })
   }
 
-  VeelComponent.contextTypes = context.types
-  return VeelComponent
+  Component.contextTypes = context.types
+
+  return Component
 }
 
 export default styled

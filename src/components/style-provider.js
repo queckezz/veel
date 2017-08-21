@@ -1,5 +1,5 @@
-import context from './context'
 import { Component, Children } from 'react'
+import context from '../context'
 
 class StyleProvider extends Component {
   getChildContext() {
