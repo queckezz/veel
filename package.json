@@ -1,6 +1,6 @@
 {
   "name": "veel",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "Base react styling components using fela with a design system",
   "main": "lib/index.js",
   "module": "src/index.js",
