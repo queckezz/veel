@@ -1,11 +1,17 @@
 {
   "name": "veel",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "description": "Base react styling components using fela with a design system",
   "main": "lib/index.js",
-  "module": "src/index.js",
+  "module": "es/index.js",
+  "files": [
+    "es",
+    "lib"
+  ],
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "run-p build:*",
+    "build:es": "cross-env BABEL_ENV=esnext babel src -d es",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src -d lib",
     "prepublish": "npm run build",
     "test": "ava"
   },
@@ -16,16 +22,34 @@
     ]
   },
   "babel": {
-    "presets": [
-      [
-        "env",
-        {
-          "targets": {
-            "browsers": "last 2 versions"
-          }
-        }
-      ]
-    ],
+    "env": {
+      "esnext": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "browsers": "last 2 versions"
+              },
+              "modules": false
+            }
+          ]
+        ]
+      },
+      "commonjs": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "browsers": "last 2 versions"
+              },
+              "modules": "commonjs"
+            }
+          ]
+        ]
+      }
+    },
     "plugins": [
       "transform-react-jsx",
       "transform-object-rest-spread"
@@ -46,6 +70,8 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.0",
     "babel-register": "^6.26.0",
+    "cross-env": "^5.0.5",
+    "npm-run-all": "^4.0.2",
     "react": "^15.6.1",
     "react-test-renderer": "^15.6.1"
   },
