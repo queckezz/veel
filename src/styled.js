@@ -24,7 +24,7 @@ const styled = (BaseComponent) => (...args) => {
         .filter(
           key => typeof BaseComponent == 'function'
             ? !stylePropKeys.includes(key)
-            : false
+            : true
         )
         .reduce((obj, key) => ({ ...obj, [key]: props[key] }), {})
     })

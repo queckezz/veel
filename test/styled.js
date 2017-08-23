@@ -1,10 +1,28 @@
 
 import styled, { StyleProvider, createRenderer } from '../src'
 import { create as render } from 'react-test-renderer'
+import PropTypes from 'prop-types'
 import React from 'react'
 import test from 'ava'
 
 const defaultRenderer = createRenderer()
+
+const Box = styled('div')(
+  props => props.padding ? { padding: props.padding } : null
+)
+
+Box.propTypes = {
+  padding: PropTypes.number
+}
+
+const Flex = styled(Box)(
+  { display: 'flex' },
+  props => props.align ? { alignItems: props.align } : null
+)
+
+Flex.propTypes = {
+  align: PropTypes.string
+}
 
 test('empty component', (t) => {
   const Box = styled('div')()
@@ -47,19 +65,29 @@ test('styled component', (t) => {
   t.is(el.type, 'h1')
 })
 
-test('removes props based on prop-types', (t) => {
+test('removes props based on prop types', (t) => {
   const renderer = createRenderer()
-
-  const Flex = styled('div')(
-    { display: 'flex' },
-    props => props.align ? { alignItems: props.align } : null
-  )
 
   const el = render(
     <StyleProvider renderer={renderer}>
-      <Flex align='center' />
+      <Flex align='center' unknownProp={true} />
     </StyleProvider>  
   ).toJSON()
 
   t.is(el.props.align, undefined)
+  t.is(el.props.unknownProp, true)
+})
+
+test('doesn\'t remove props when it\'ts a component', (t) => {
+  const renderer = createRenderer()
+  
+  const el = render(
+    <StyleProvider renderer={renderer}>
+      <Flex padding={20} align='center' />
+    </StyleProvider>  
+  ).toJSON()
+
+  t.is(el.props.align, undefined)
+  t.is(el.props.padding, 20)
+  t.true(renderer.rules.indexOf('padding:20') !== -1)
 })
