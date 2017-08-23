@@ -13,7 +13,7 @@
     "build:es": "cross-env BABEL_ENV=esnext babel src -d es",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src -d lib",
     "prepublish": "npm run build",
-    "test": "ava"
+    "test": "cross-env BABEL_ENV=commonjs ava"
   },
   "ava": {
     "babel": "inherit",

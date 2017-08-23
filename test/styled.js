@@ -46,3 +46,20 @@ test('styled component', (t) => {
   t.true(renderer.rules.indexOf('margin:15') !== -1)
   t.is(el.type, 'h1')
 })
+
+test('removes props based on prop-types', (t) => {
+  const renderer = createRenderer()
+
+  const Flex = styled('div')(
+    { display: 'flex' },
+    props => props.align ? { alignItems: props.align } : null
+  )
+
+  const el = render(
+    <StyleProvider renderer={renderer}>
+      <Flex align='center' />
+    </StyleProvider>  
+  ).toJSON()
+
+  t.is(el.props.align, undefined)
+})
