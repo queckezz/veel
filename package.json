@@ -58,7 +58,7 @@
   "dependencies": {
     "fela": "^5.0.2",
     "prop-types": "^15.5.10",
-    "styled-system": "^1.0.0-7"
+    "styled-system": "^1.0.0-13"
   },
   "peerDependencies": {
     "react": "15.x"
