@@ -71,23 +71,23 @@ test('removes props based on prop types', (t) => {
   const el = render(
     <StyleProvider renderer={renderer}>
       <Flex align='center' unknownProp={true} />
-    </StyleProvider>  
+    </StyleProvider>
   ).toJSON()
 
   t.is(el.props.align, undefined)
   t.is(el.props.unknownProp, true)
 })
 
-test('doesn\'t remove props when it\'ts a component', (t) => {
+test.only('uses ReactComponent as base', (t) => {
   const renderer = createRenderer()
-  
+
   const el = render(
     <StyleProvider renderer={renderer}>
       <Flex padding={20} align='center' />
-    </StyleProvider>  
+    </StyleProvider>
   ).toJSON()
 
+  t.is(el.props.className, 'a b c')
   t.is(el.props.align, undefined)
-  t.is(el.props.padding, 20)
   t.true(renderer.rules.indexOf('padding:20') !== -1)
 })

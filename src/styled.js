@@ -3,6 +3,12 @@ import { combineRules } from 'fela'
 import PropTypes from 'prop-types'
 import context from './context'
 
+const keepKeys = (obj, keys) => {
+  return Object.keys(obj)
+    .filter(key => !keys.includes(key))
+    .reduce((acc, key) => ({ ...acc, [key]: obj[key] }), {})
+}
+
 const styled = (BaseComponent) => (...args) => {
   const Component = ({ is, ...props }, ctx) => {
     const { renderer, theme } = ctx[context.ns]
@@ -18,16 +24,14 @@ const styled = (BaseComponent) => (...args) => {
       styleProps
     )
 
-    return h(is || BaseComponent, {
-      className,
-      ...Object.keys(props)
-        .filter(
-          key => typeof BaseComponent == 'function'
-            ? !stylePropKeys.includes(key)
-            : true
-        )
-        .reduce((obj, key) => ({ ...obj, [key]: props[key] }), {})
-    })
+    return h(
+      is || BaseComponent,
+      Object.assign({}, keepKeys(props, stylePropKeys), {
+        className: [props.className, className]
+          .join(' ')
+          .trim()
+      })
+    )
   }
 
   Component.contextTypes = context.types
