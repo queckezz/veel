@@ -78,7 +78,7 @@ test('removes props based on prop types', (t) => {
   t.is(el.props.unknownProp, true)
 })
 
-test.only('uses ReactComponent as base', (t) => {
+test('uses ReactComponent as base', (t) => {
   const renderer = createRenderer()
 
   const el = render(
