@@ -10,7 +10,7 @@ const keepKeys = (obj, keys) => {
 }
 
 const styled = (BaseComponent) => (...args) => {
-  const Component = ({ is, ...props }, ctx) => {
+  const Component = ({ is, innerRef, ...props }, ctx) => {
     const { renderer, theme } = ctx[context.ns]
     const stylePropKeys = Object.keys(Component.propTypes || {})
     const styleProps = Object.assign({ theme }, props)
@@ -27,6 +27,7 @@ const styled = (BaseComponent) => (...args) => {
     return h(
       is || BaseComponent,
       Object.assign({}, keepKeys(props, stylePropKeys), {
+        ref: innerRef,
         className: [props.className, className]
           .join(' ')
           .trim()
