@@ -10,12 +10,12 @@ const keepKeys = (obj, keys) => {
 }
 
 const styled = (BaseComponent) => (...args) => {
-  const Component = ({ is, innerRef, ...props }, ctx) => {
+  const Component = ({ is, innerRef, css, ...props }, ctx) => {
     const { renderer, theme } = ctx[context.ns]
     const stylePropKeys = Object.keys(Component.propTypes || {})
     const styleProps = Object.assign({ theme }, props)
 
-    const rules = args
+    const rules = [...args, css]
       .map((a) => typeof a !== 'function' ? () => a : a)
       .filter(s => s !== null)
 
